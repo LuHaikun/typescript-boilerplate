@@ -117,12 +117,26 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
+              presets: [
+                [ '@babel/preset-env', {
+                  useBuiltIns: 'usage',
+                  corejs: {
+                    version: 3
+                  },
+                  targets: {
+                    chrome: '60',
+                    firefox: '50'
+                  }
+                }]
+              ],
               plugins: [
                 ["import", {
                   "libraryName": "antd",
                   "style": 'css'
                 }]
-              ]
+              ],
+              // 开启babel缓存 第二次构建时，会读取之前的缓存
+              cacheDirectory: true
             }
           },
           'ts-loader'
