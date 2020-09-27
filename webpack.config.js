@@ -6,7 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
-
 // 使用__dirname变量获取当前模块文件所在目录的完整绝对路径
 function getPath (dir) {
   return path.resolve(__dirname, dir)
@@ -35,7 +34,7 @@ const getCommonLoader = function (isModule) {
           mode: 'local',
           localIdentName: '[local]_[hash:base64:5]'
         } : false
-      },
+      }
     },
     { // 还需要在 package.json 中定义 browserslist
       loader: 'postcss-loader',
@@ -65,14 +64,14 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'], // 配置省略文件路径的后缀名
     alias: { // 配置解析模块路径别名: 优点简写路径 缺点路径没有提示
-      api: getPath('src/api'), // api文件
-      components: getPath('src/components'), // 组件文件
-      config: getPath('src/config'), // 配置文件
-      constant: getPath('src/constant'), // 常量文件
-      lib: getPath('src/lib'), // 库文件
-      style: getPath('src/style'), // 样式文件
-      redux: getPath('src/redux'), // redux文件
-      assets: getPath('src/assets') // 资源文件
+      $api: getPath('src/api/'), // api文件
+      $components: getPath('src/components/'), // 组件文件
+      $config: getPath('src/config/'), // 配置文件
+      $constant: getPath('src/constant/'), // 常量文件
+      $lib: getPath('src/lib/'), // 库文件
+      $style: getPath('src/style/'), // 样式文件
+      $redux: getPath('src/redux/'), // redux文件
+      $assets: getPath('src/assets/') // 资源文件
     }
   },
   // 模块配置
@@ -92,7 +91,7 @@ module.exports = {
         exclude: NODE_MODULES,
         include: PATH_SRC,
         use: [
-          ...getCommonLoader(true), 
+          ...getCommonLoader(true),
           {
             loader: 'less-loader',
             options: {
@@ -102,7 +101,7 @@ module.exports = {
               }
             }
           }
-        ],
+        ]
       },
       {
         test: /\.js$/,
@@ -118,7 +117,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: [
-                [ '@babel/preset-env', {
+                ['@babel/preset-env', {
                   useBuiltIns: 'usage',
                   corejs: {
                     version: 3
@@ -130,9 +129,9 @@ module.exports = {
                 }]
               ],
               plugins: [
-                ["import", {
-                  "libraryName": "antd",
-                  "style": 'css'
+                ['import', {
+                  libraryName: 'antd',
+                  style: 'css'
                 }]
               ],
               // 开启babel缓存 第二次构建时，会读取之前的缓存

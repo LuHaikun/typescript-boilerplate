@@ -1,15 +1,21 @@
-const common = require('./webpack.config.js')
 const merge = require('webpack-merge')
+const common = require('./webpack.config.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 
+const PUBLIC_PATH = '/dist/'
 module.exports = merge.smart(common, {
   mode: 'production',
+  output: {
+    publicPath: PUBLIC_PATH
+  },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css'
+      filename: '[name].[chunkhash].css',
+      chunkFilename: '[name].[chunkhash].css',
+      ignoreOrder: false
     }),
     new OptimizeCssAssetsWebpackPlugin(), // 压缩 css
     new WorkboxWebpackPlugin.GenerateSW({
@@ -31,8 +37,14 @@ module.exports = merge.smart(common, {
   optimization: {
     minimizer: [ // 配置生产环境的压缩方案：js 和 css
       new TerserWebpackPlugin({
+        parallel: 4, // 开启4个进程
         cache: true, // 开启缓存
-        parallel: true, // 开启多进程打包
+        terserOptions: {
+          output: {
+            comments: false
+          }
+        },
+        extractComments: false,
         sourceMap: true // 启动 source-map
       })
     ]

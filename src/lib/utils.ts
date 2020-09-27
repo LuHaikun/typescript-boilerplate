@@ -97,10 +97,10 @@ export const getUnique = (() => {
  * @param min 最小值
  * @param max 最大值
  */
-export const getRandomNum = function (min: number, max: number): number{
-	const range = max - min;
-	const rand = Math.random();   
-	return min + Math.round(rand * range);
+export const getRandomNum = function (min: number, max: number): number {
+  const range = max - min
+  const rand = Math.random()
+  return min + Math.round(rand * range)
 }
 
 /**

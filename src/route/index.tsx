@@ -22,13 +22,15 @@ import history from './history'
 
 class Router extends Component<RouteProps, {defaultRoute: string}> {
   routes: IRoute[] = null
-  constructor(props: RouteProps) {
-    super(props);
+
+  constructor (props: RouteProps) {
+    super(props)
     this.state = {
-      defaultRoute: '',
+      defaultRoute: ''
     }
     this.routes = getRoutes()
   }
+
   async componentDidMount (): Promise<void> {
     const isLogin = true
     if (isLogin) {
@@ -37,7 +39,7 @@ class Router extends Component<RouteProps, {defaultRoute: string}> {
       history.push('/login')
     }
   }
-  
+
   renderRoute = (routes: IRoute[]): ReactNode [] => {
     return routes.map((route: IRoute): ReactNode => {
       if (route.routes.length) return this.renderRoute(route.routes)

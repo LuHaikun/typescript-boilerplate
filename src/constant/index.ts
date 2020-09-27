@@ -13,7 +13,7 @@ export const ERROR_STATUS = [
   { status: 0, label: '不限', color: 'red' },
   { status: 1, label: '未发现', color: '#52C41A' },
   { status: 2, label: '异常', color: '#F5222D' },
-  { status: 3, label: '正常', color: '#1890FF' },
+  { status: 3, label: '正常', color: '#1890FF' }
 ]
 
 export default {

@@ -5,7 +5,7 @@
  * @email luhaikun@cecdat.com
  * @copyright Copyright 2018 CEC(Fujian) Healthcare Big Data Operation Service Co., Ltd. All rights reserved.
  */
-import React, { ReactNode } from 'react'
+import React from 'react'
 
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale-provider/zh_CN'
@@ -14,9 +14,8 @@ import moment from 'moment'
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
 
-
 class App extends React.Component {
-  render (): ReactNode {
+  render (): React.ReactNode {
     return (
       <ConfigProvider locale={zhCN}>
         <Routers />

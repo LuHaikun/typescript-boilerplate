@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from "react-dom"
+import ReactDOM from 'react-dom'
 
 import App from './App'
 import './api/common/axiosInit'
@@ -9,4 +9,4 @@ import './style/index.less'
 ReactDOM.render(
   React.createElement(App),
   document.getElementById('app')
-);
+)

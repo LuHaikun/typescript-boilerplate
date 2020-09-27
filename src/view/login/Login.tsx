@@ -5,7 +5,7 @@
  * @email luhaikun@cecdat.com
  * @copyright Copyright 2018 CEC(Fujian) Healthcare Big Data Operation Service Co., Ltd. All rights reserved.
  */
-import React, { Component, ReactNode, MouseEvent } from 'react'
+import React, { Component } from 'react'
 
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
@@ -15,50 +15,51 @@ import style from './style.less'
 
 class Login extends Component {
   formRef = React.createRef<FormInstance>()
-  handleSubmit = (e: MouseEvent): void => {
+
+  handleSubmit = (e: React.MouseEvent): void => {
     e.preventDefault()
     this.formRef.current.validateFields()
       .then(values => {
         login(values)
-    })
-    .catch(errorInfo => {
-      console.log(errorInfo)
-    })
+      })
+      .catch(errorInfo => {
+        console.log(errorInfo)
+      })
   }
 
-  render () : ReactNode {
+  render (): React.ReactNode {
     return (
-      <div className={style['login']}>
+      <div className={style['login-wrapper']}>
         <Form ref={this.formRef} onFinish={this.handleSubmit} className={style['login-form']}>
           <Form.Item
-            name={'userName'}
-            label={''}
+            label=''
+            name='userName'
             rules={[{ required: true, message: '用户名不可为空' }]}
           >
             <Input
               allowClear
               prefix={
-                <UserOutlined style={{ color: 'rgba(0,0,0,.65)' }}
-              />}
+                <UserOutlined style={{ color: 'rgba(0,0,0,.65)' }} />
+              }
               placeholder='用户名'
             />
           </Form.Item>
           <Form.Item
-            name={'password'}
-            label={''}
+            label=''
+            name='password'
             rules={[{ required: true, message: '密码不可为空' }]}
           >
             <Input.Password
               allowClear
               prefix={
-                <LockOutlined style={{ color: 'rgba(0,0,0,.65)' }}
-              />}
+                <LockOutlined style={{ color: 'rgba(0,0,0,.65)' }} />
+              }
               placeholder='密码'
             />
           </Form.Item>
           <Form.Item
-            name={'captcha'}
-            label={''}
+            label=''
+            name='captcha'
             rules={[{ required: true, message: '验证码不可为空' }]}
           >
             <Input allowClear placeholder='输入验证码' />
