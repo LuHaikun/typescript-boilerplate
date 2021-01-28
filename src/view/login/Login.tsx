@@ -9,6 +9,7 @@ import React, { Component } from 'react'
 
 import { Form, Input, Button } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
+/* eslint no-unused-vars: */
 import { FormInstance } from 'antd/lib/form'
 import login from '../../lib/login'
 import style from './style.less'
@@ -27,7 +28,7 @@ class Login extends Component {
       })
   }
 
-  render (): React.ReactNode {
+  render () {
     return (
       <div className={style['login-wrapper']}>
         <Form ref={this.formRef} onFinish={this.handleSubmit} className={style['login-form']}>

@@ -1,8 +1,8 @@
-.layout {
+.layout-wrapper {
   height: 100%;
   display: flex;
-  &-sider {
-    &-logo {
+  .layout-sider {
+    .layout-logo {
       height: 32px;
       background: rgba(255, 255, 255, 0.2);
       margin: 16px;
@@ -10,32 +10,32 @@
   }
   
   
-  &-compose {
+  .layout-compose {
     flex: 1;
     display: flex;
     flex-direction: column;
     background: #F0F2F5;
-    &-header {
+    .layout-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: #FFF;
     }
-    &-content {
+    .layout-content {
       flex: 1;
       background: #FFF;
       margin: 16px;
       padding: 16px;
       min-height: 300px;
     }
-    &-trigger {
+    .layout-trigger {
       font-size: 18px;
       line-height: 64px;
       padding: 0 24px;
       cursor: pointer;
       transition: color 0.3s;
     }
-    &-trigger :hover {
+    .layout-trigger :hover {
       color: #1890ff;
     }
   }

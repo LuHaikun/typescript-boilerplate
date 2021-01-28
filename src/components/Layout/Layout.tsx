@@ -5,7 +5,7 @@
  * @email luhaikun@cecdat.com
  * @copyright Copyright 2018 CEC(Fujian) Healthcare Big Data Operation Service Co., Ltd. All rights reserved.
  */
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Layout, Menu } from 'antd'
 import {
   MenuUnfoldOutlined,
@@ -49,7 +49,7 @@ class LayoutComponent extends React.Component<IProps, IState> {
       selectedKeys: [path]
     }))
   }
-  
+
   handleOpenChange = (currentKeys: string[]): void => {
     const { openKeys } = this.state
     const latestKey = currentKeys.find(key => openKeys.indexOf(key) === -1)
@@ -82,32 +82,30 @@ class LayoutComponent extends React.Component<IProps, IState> {
       })
       if (going) parent.pop()
     }
-  
+
     find(routes, path)
     const openKeys = parent.map(_ => _.path)
     openKeys.pop()
     return openKeys
   }
-  
+
   componentDidMount = (): void => {
     const { menus, location } = this.props
     const pathname = location.pathname
     this.matchRoute(pathname, menus)
     const openKeys = this.getOpenKeys(menus, pathname)
-    if (this.matched) this.setState({ selectedKeys: [this.matched.path], openKeys})
+    if (this.matched) this.setState({ selectedKeys: [this.matched.path], openKeys })
   }
 
-  renderMenuItem = (route: IRoute): ReactNode => {
+  renderMenuItem = (route: IRoute) => {
     const { meta, routes } = route
     const hasChildren = routes.length
     return hasChildren
       ? this.renderSubMenu(route)
-      : <Menu.Item key={route.path}>
-        <span>{meta.name}</span>
-      </Menu.Item>
+      : <Menu.Item key={route.path}><span>{meta.name}</span></Menu.Item>
   }
 
-  renderSubMenu = (route: IRoute): ReactNode => {
+  renderSubMenu = (route: IRoute) => {
     const { meta } = route
     const title = () => (
       <span>
@@ -142,10 +140,10 @@ class LayoutComponent extends React.Component<IProps, IState> {
    * menus配置路由集合
    * handleSelect 选中方法触发需将新条目推入历史堆栈
    */
-  render (): ReactNode {
-    const  { openKeys, selectedKeys } = this.state
+  render () {
+    const { openKeys, selectedKeys } = this.state
     return (
-      <div className={style['layout']}>
+      <div className={style['layout-wrapper']}>
         <Sider
           collapsible
           trigger={null}
@@ -160,12 +158,12 @@ class LayoutComponent extends React.Component<IProps, IState> {
             onOpenChange={this.handleOpenChange}
             selectedKeys={selectedKeys}
             openKeys={openKeys}
-            >
-              {
-                this.props.menus.map(route => (
-                  this.renderMenuItem(route)
-                ))
-              }
+          >
+            {
+              (this.props.menus || []).map(route => (
+                this.renderMenuItem(route)
+              ))
+            }
           </Menu>
         </Sider>
         <div className={style['layout-compose']}>
